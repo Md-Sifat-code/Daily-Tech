@@ -1,7 +1,8 @@
 import React from "react";
 import Left_side from "../sidebars/Left_side";
 import Right_side from "../sidebars/Right_side";
-import Middle from "../sidebars/Middle";
+
+import { Outlet } from "react-router-dom";
 
 export default function Main_Layout() {
   return (
@@ -11,7 +12,7 @@ export default function Main_Layout() {
           <Right_side />
         </div>
         <div className="col-span-2 border">
-          <Middle />
+          <Outlet />
         </div>
 
         <div>

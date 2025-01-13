@@ -3,11 +3,18 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Main_Layout from "./Layout/Main_Layout";
+import Middle from "./sidebars/Middle";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main_Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Middle />,
+      },
+    ],
   },
 ]);
 
