@@ -6,3 +6,11 @@
 *{
   background-color: black;
 }
+
+.textcol{
+  color: #6b21a8;
+}
+/* roboto font */
+.rob{
+  font-family: "Roboto", serif;
+}
