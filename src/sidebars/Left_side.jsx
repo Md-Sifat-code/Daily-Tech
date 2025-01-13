@@ -10,6 +10,7 @@ import { RiVipCrown2Fill } from "react-icons/ri";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 import { LuUserRound } from "react-icons/lu";
 import { CgMoreO } from "react-icons/cg";
+import { Link } from "react-router-dom";
 export default function Left_side() {
   return (
     <section>
@@ -25,53 +26,57 @@ export default function Left_side() {
           className="w-full rob justify-around flex h-[800px] border flex-col items-start px-6
           mt-10 text-white robo "
         >
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <MdHomeFilled />
             Home
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoSearchSharp />
             Explore
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <FaBell />
             Notifications
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoMailOutline />
             Messages
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoBookmarkSharp />
             Bookmarks
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <PiHandbagSimpleBold />
             Jobs
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <BsPeopleFill />
             Communities
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <RiVipCrown2Fill />
             Premium
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoCheckmarkDoneCircleSharp />
             Get verified
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <LuUserRound />
             Profile
-          </p>
-          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
+          </Link>
+          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <CgMoreO />
             More
+          </Link>
+
+          <p className="btn w-full bg-white border-none rounded-full mb-2 text-black font-bold robo text-2xl">
+            Post
           </p>
-          <p></p>
         </div>
-        <div></div>
+
         <div></div>
       </div>
     </section>
