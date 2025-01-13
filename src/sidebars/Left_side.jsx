@@ -11,6 +11,7 @@ import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 import { LuUserRound } from "react-icons/lu";
 import { CgMoreO } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 export default function Left_side() {
   return (
     <section>
@@ -77,7 +78,15 @@ export default function Left_side() {
           </p>
         </div>
 
-        <div></div>
+        <div className="flex items-center justify-start gap-4 robo">
+          <p className="text-white rounded-full bg-purple-800 text-2xl p-2 ">
+            <FaUser className=" rounded-full bg-purple-800" />
+          </p>
+          <div className="flex flex-col text-white mt-2">
+            <p>Md sifat Bin jibon</p>
+            <p>@code-siffat</p>
+          </div>
+        </div>
       </div>
     </section>
   );
