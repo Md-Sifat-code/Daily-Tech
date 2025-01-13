@@ -22,42 +22,52 @@ export default function Left_side() {
         </div>
         {/* icons */}
         <div
-          className="w-full justify-around flex h-[800px] border flex-col items-start px-6
+          className="w-full rob justify-around flex h-[800px] border flex-col items-start px-6
           mt-10 text-white robo "
         >
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <MdHomeFilled />
             Home
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <IoSearchSharp />
+            Explore
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <FaBell />
+            Notifications
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <IoMailOutline />
+            Messages
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <IoBookmarkSharp />
+            Bookmarks
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <PiHandbagSimpleBold />
+            Jobs
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <BsPeopleFill />
+            Communities
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <RiVipCrown2Fill />
+            Premium
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <IoCheckmarkDoneCircleSharp />
+            Get verified
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <LuUserRound />
+            Profile
           </p>
-          <p>
+          <p className="flex flex-row justify-start items-center gap-6 text-3xl font-bold">
             <CgMoreO />
+            More
           </p>
           <p></p>
         </div>

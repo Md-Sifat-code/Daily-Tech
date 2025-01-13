@@ -8,14 +8,14 @@ export default function Main_Layout() {
     <section className="min-h-screen flex justify-center  ">
       <div className=" border w-[70%] grid grid-cols-4">
         <div>
-          <Left_side />
+          <Right_side />
         </div>
         <div className="col-span-2 border">
           <Middle />
         </div>
 
         <div>
-          <Right_side />
+          <Left_side />
         </div>
       </div>
     </section>
