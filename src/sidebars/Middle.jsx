@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Outlet } from "react-router-dom"; // Import NavLink for active styling
 import { FaImage, FaRegSmile, FaTrash } from "react-icons/fa"; // Added Trash Icon for deletion
 import EmojiPicker from "emoji-picker-react"; // Using emoji-picker-react
+import axios from "axios"; // Import axios for API requests
 
 export default function Middle() {
   const [postText, setPostText] = useState("");
   const [images, setImages] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track if the form is submitting
 
   const emojiPickerRef = useRef(null);
 
@@ -52,12 +54,41 @@ export default function Middle() {
     setShowEmojiPicker(false);
   };
 
+  const handleSubmit = async () => {
+    if (isSubmitting || !postText.trim()) return; // Prevent multiple submissions or empty posts
+
+    setIsSubmitting(true);
+
+    const formData = new FormData();
+    formData.append("title", postText);
+
+    // Append images to form data
+    images.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    try {
+      const response = await axios.post(
+        "https://dailytech.onrender.com/Posts/add",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log("Post created successfully:", response.data);
+      // Reset the form after submission
+      setPostText("");
+      setImages([]);
+    } catch (error) {
+      console.error("Error creating post:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section>
       <div>
         {/* Navigation links with active styling */}
         <div className="flex flex-col sm:flex-row justify-around items-center border-b p-4">
-          {/* NavLink for "For You" with Tailwind active class */}
           <NavLink
             to="for_you"
             className={({ isActive }) =>
@@ -66,7 +97,6 @@ export default function Middle() {
           >
             For You
           </NavLink>
-          {/* NavLink for "Following" with Tailwind active class */}
           <NavLink
             to="following"
             className={({ isActive }) =>
@@ -76,14 +106,9 @@ export default function Middle() {
             Following
           </NavLink>
         </div>
-        <div
-          className="flex px-2
-         flex-row w-full items-tart"
-        >
+        <div className="flex px-2 flex-row w-full items-tart">
           <div className="flex mt-6 justify-start space-x-4">
-            {/* User Icon */}
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>{" "}
-            {/* Replace with user icon */}
           </div>
 
           {/* Create post section */}
@@ -96,7 +121,7 @@ export default function Middle() {
                   value={postText}
                   onChange={handlePostTextChange}
                   placeholder="What's on your mind?"
-                  className="w-full p-2 border rounded"
+                  className="w-full text-white p-2 border rounded"
                 />
               </div>
               <div className="mt-2 w-full">
@@ -109,7 +134,6 @@ export default function Middle() {
                           alt="uploaded"
                           className="w-20 h-20 object-cover rounded"
                         />
-                        {/* Delete button */}
                         <button
                           onClick={() => handleImageDelete(index)}
                           className="absolute top-0 right-0 bg-gray-700 text-white rounded-full p-1"
@@ -160,6 +184,15 @@ export default function Middle() {
                 <EmojiPicker onEmojiClick={handleEmojiSelect} />
               </div>
             )}
+
+            {/* Submit Button */}
+            <button
+              onClick={handleSubmit}
+              className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Post"}
+            </button>
           </div>
         </div>
 

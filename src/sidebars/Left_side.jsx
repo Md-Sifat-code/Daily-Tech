@@ -24,7 +24,7 @@ export default function Left_side() {
         </div>
         {/* icons */}
         <div
-          className="w-full rob justify-around flex h-[800px] border flex-col items-start px-6
+          className="w-full rob justify-around flex h-[800px] flex-col items-start px-6
           mt-10 text-white robo "
         >
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
