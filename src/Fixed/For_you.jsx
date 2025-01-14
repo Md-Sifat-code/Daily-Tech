@@ -34,10 +34,10 @@ export default function For_you() {
           {posts.map((post) => (
             <div
               key={post._id}
-              className="card bg-white shadow-lg rounded-lg mb-6 hover:scale-105 transform transition-all duration-300 ease-in-out"
+              className="card bg-white shadow-lg rounded-lg mb-6 hover:scale-105 transform transition-all duration-300 ease-in-out border-b border-blue-400"
             >
               <div className="card-body">
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl text-white font-semibold ">
                   {post.title}
                 </h3>
 
