@@ -109,15 +109,15 @@ export default function Middle() {
 
   return (
     <section>
-      <div>
+      <div className="flex justify-center items-center flex-col w-full">
         {/* Create post section */}
-        <div className="flex px-2 flex-row w-full items-start">
-          <div className="flex mt-6 justify-start space-x-4">
+        <div className="flex px-2  mt-2 flex-row w-[870px] bg-[#0f1321] rounded-lg justify-center items-start ">
+          <div className="flex px-4 mt-6 justify-start items-start  space-x-4">
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
           </div>
 
           {/* Post Form */}
-          <div className="p-4 w-full border-b flex flex-col gap-5 relative">
+          <div className="p-4 w-full  border-gray-400 flex flex-col gap-5 relative">
             {/* Text Input */}
             <div className="flex flex-col w-full justify-between items-center mt-3 gap-3">
               <div className="w-full">
@@ -126,7 +126,7 @@ export default function Middle() {
                   value={postText}
                   onChange={handlePostTextChange}
                   placeholder="What's on your mind?"
-                  className="w-full text-white p-2 border rounded"
+                  className="w-full text-white bg-transparent p-2 border-b rounded"
                 />
               </div>
               <div className="mt-2 w-full">
@@ -153,21 +153,33 @@ export default function Middle() {
               </div>
 
               {/* Image Input Button */}
-              <div className="flex justify-start items-start w-full space-x-4 mt-2 sm:mt-0">
+              <div className="flex justify-between items-center w-full space-x-4 mt-2 sm:mt-0">
+                <div className="flex justify-start items-start w-full space-x-4 mt-2 sm:mt-0">
+                  <button
+                    onClick={() =>
+                      document.getElementById("imageInput").click()
+                    }
+                    className="hover:text-blue-500"
+                    aria-label="Add Image"
+                  >
+                    <FaImage size={24} className="text-blue-600" />
+                    <input
+                      type="file"
+                      id="imageInput"
+                      onChange={handleImageChange}
+                      className="hidden"
+                      accept="image/*"
+                      multiple
+                    />
+                  </button>
+                </div>
                 <button
-                  onClick={() => document.getElementById("imageInput").click()}
-                  className="hover:text-blue-500"
-                  aria-label="Add Image"
+                  onClick={handleSubmit}
+                  className=" bg-blue-500 btn px-8
+                   text-white border-none font-bold rounded-[42px]"
+                  disabled={isSubmitting}
                 >
-                  <FaImage size={24} />
-                  <input
-                    type="file"
-                    id="imageInput"
-                    onChange={handleImageChange}
-                    className="hidden"
-                    accept="image/*"
-                    multiple
-                  />
+                  {isSubmitting ? "Submitting..." : "Post"}
                 </button>
               </div>
             </div>
@@ -183,13 +195,6 @@ export default function Middle() {
             )}
 
             {/* Submit Button */}
-            <button
-              onClick={handleSubmit}
-              className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting..." : "Post"}
-            </button>
           </div>
         </div>
 

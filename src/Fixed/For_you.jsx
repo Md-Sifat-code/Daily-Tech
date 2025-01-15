@@ -31,16 +31,16 @@ export default function For_you() {
           {posts.map((post) => (
             <div
               key={post._id}
-              className="bg-[#210633] rounded-lg mb-6 hover:scale-105 transform transition-all duration-300 ease-in-out"
+              className=" bg-[#08020e3a]  rounded-[22px] mb-14 hover:scale-105 transform transition-all duration-300 ease-in-out shadow-lg shadow-blue-950 border-gray-300 py-4"
             >
-              <div className="card-body">
-                <h3 className="text-xl text-white font-semibold ">
+              <div className="px-6">
+                <h3 className="text-xl mt-6 text-white font-semibold ">
                   {post.title}
                 </h3>
 
                 {/* Display images if available */}
                 {post.imageUrls && post.imageUrls.length > 0 && (
-                  <div className="flex w-full space-x-4 mt-4">
+                  <div className="flex w-full mt-4">
                     {post.imageUrls.map((imageUrl, index) => (
                       <img
                         key={index}
@@ -53,14 +53,14 @@ export default function For_you() {
                 )}
 
                 {/* Social actions like Like, Comment, Share */}
-                <div className="flex items-center mt-4 space-x-4 text-gray-600">
-                  <button className="flex items-center hover:text-red-500">
+                <div className="flex items-center px-4 mt-4 space-x-4 text-gray-600">
+                  <button className="flex items-center text-red-500">
                     <FaHeart className="mr-2" />
                     Like
                   </button>
                   <button className="flex items-center hover:text-blue-500">
                     <FaComment className="mr-2" />
-                    Comment
+                    Discussion
                   </button>
                   <button className="flex items-center hover:text-green-500">
                     <FaShareAlt className="mr-2" />

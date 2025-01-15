@@ -6,7 +6,7 @@ import Middle from "../sidebars/Middle"; // Import the Middle component
 
 export default function Main_Layout() {
   return (
-    <section className="min-h-screen bg-black flex">
+    <section className="min-h-screen bg-[#111827]  flex">
       {/* Left Sidebar (Fixed) */}
       <div className="w-[20%] fixed top-0 left-0 h-full ">
         <Left_side />
