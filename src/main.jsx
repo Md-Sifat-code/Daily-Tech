@@ -7,22 +7,39 @@ import Middle from "./sidebars/Middle";
 import For_you from "./Fixed/For_you";
 import Following from "./Fixed/Following";
 import { PostProvider } from "./Context_api/PostContext";
+import Auth_Layout from "./Layout/Auth_Layout";
+import SignUP from "./Authentication/SignUP";
+import Login from "./Authentication/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Auth_Layout />,
+    children: [
+      {
+        path: "/",
+        element: <SignUP />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
+  },
+  {
+    path: "/home",
     element: <Main_Layout />, // Renders Main_Layout with the Middle component
     children: [
       {
-        path: "/", // Renders the "Create Post" section and the Outlet for the nested routes
+        path: "/home", // Renders the "Create Post" section and the Outlet for the nested routes
         element: <Middle />,
         children: [
           {
-            path: "for_you", // This renders For_you inside Outlet
+            path: "/home/for_you", // This renders For_you inside Outlet
             element: <For_you />,
           },
           {
-            path: "following", // This renders Following inside Outlet
+            path: "/home/following", // This renders Following inside Outlet
             element: <Following />,
           },
         ],
