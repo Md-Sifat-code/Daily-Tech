@@ -10,6 +10,7 @@ import { PostProvider } from "./Context_api/PostContext";
 import Auth_Layout from "./Layout/Auth_Layout";
 import SignUP from "./Authentication/SignUP";
 import Login from "./Authentication/Login";
+import { UserProvider } from "./Contexts/UserContext";
 
 const router = createBrowserRouter([
   {
@@ -50,8 +51,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <PostProvider>
-      <RouterProvider router={router} />
-    </PostProvider>
+    <UserProvider>
+      <PostProvider>
+        <RouterProvider router={router} />
+      </PostProvider>
+    </UserProvider>
   </React.StrictMode>
 );
