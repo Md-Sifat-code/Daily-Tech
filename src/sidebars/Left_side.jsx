@@ -12,7 +12,12 @@ import { LuUserRound } from "react-icons/lu";
 import { CgMoreO } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+
 export default function Left_side() {
+  // Get username and email from sessionStorage
+  const username = sessionStorage.getItem("username") || "Md sifat Bin jibon"; // Default if not found
+  const email = sessionStorage.getItem("email") || "@code-siffat"; // Default if not found
+
   return (
     <section>
       <div className="flex flex-col items-center justify-center h-full">
@@ -83,8 +88,8 @@ export default function Left_side() {
             <FaUser className=" rounded-full bg-purple-800" />
           </p>
           <div className="flex flex-col text-white mt-2">
-            <p>Md sifat Bin jibon</p>
-            <p>@code-siffat</p>
+            <p>{username}</p>
+            <p>{email}</p>
           </div>
         </div>
       </div>

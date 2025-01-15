@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Outlet } from "react-router-dom"; // Import NavLink for active styling
 import { FaImage, FaRegSmile, FaTrash } from "react-icons/fa"; // Added Trash Icon for deletion
 import EmojiPicker from "emoji-picker-react"; // Using emoji-picker-react
-import axios from "axios"; // Import axios for API requests
+import For_you from "../Fixed/For_you";
 
 export default function Middle() {
-  const [postText, setPostText] = useState("");
-  const [images, setImages] = useState([]);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track if the form is submitting
+  const [postText, setPostText] = useState(""); // Post text
+  const [images, setImages] = useState([]); // Uploaded images
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false); // To show/hide emoji picker
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
-  const emojiPickerRef = useRef(null);
+  const emojiPickerRef = useRef(null); // Ref for emoji picker
 
   // Close emoji picker when clicking outside of it
   useEffect(() => {
@@ -33,12 +32,8 @@ export default function Middle() {
     setPostText(event.target.value);
   };
 
-  const handleImageClick = () => {
-    document.getElementById("imageInput").click();
-  };
-
-  const handleImageUpload = (acceptedFiles) => {
-    setImages([...images, ...acceptedFiles]);
+  const handleImageChange = (e) => {
+    setImages([...images, ...e.target.files]);
   };
 
   const handleImageDelete = (index) => {
@@ -54,66 +49,76 @@ export default function Middle() {
     setShowEmojiPicker(false);
   };
 
+  // Handle the form submission
   const handleSubmit = async () => {
-    if (isSubmitting || !postText.trim()) return; // Prevent multiple submissions or empty posts
-
-    setIsSubmitting(true);
-
     const formData = new FormData();
-    formData.append("title", postText);
+    formData.append("title", postText); // Title from user input
 
-    // Append images to form data
+    // Append images to form data as 'imageUrls'
     images.forEach((image) => {
-      formData.append("images", image);
+      formData.append("imageUrls", image);
     });
 
+    // Get the username from session storage
+    const username = sessionStorage.getItem("username");
+    if (username) {
+      formData.append("username", username); // Add username to form data
+    } else {
+      console.error("Username is not found in session storage.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Create a new form submission request
+    const requestOptions = {
+      method: "POST",
+      body: formData,
+    };
+
     try {
-      const response = await axios.post(
+      const response = await fetch(
         "https://dailytech.onrender.com/Posts/add",
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        requestOptions
       );
-      console.log("Post created successfully:", response.data);
-      // Reset the form after submission
-      setPostText("");
-      setImages([]);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Check if the response is JSON
+      const contentType = response.headers.get("content-type");
+      let result;
+
+      if (contentType && contentType.includes("application/json")) {
+        result = await response.json(); // If the response is JSON, parse it as JSON
+      } else {
+        const text = await response.text(); // If not JSON, get it as plain text
+        result = { message: text }; // Create a simple object to contain the response text
+      }
+
+      console.log("Post created successfully:", result);
+
+      setPostText(""); // Reset post text
+      setImages([]); // Reset images
     } catch (error) {
       console.error("Error creating post:", error);
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false); // Reset submitting state
     }
   };
 
   return (
     <section>
       <div>
-        {/* Navigation links with active styling */}
-        <div className="flex flex-col sm:flex-row justify-around items-center border-b p-4">
-          <NavLink
-            to="for_you"
-            className={({ isActive }) =>
-              isActive ? "text-blue-500 font-bold" : "text-white"
-            }
-          >
-            For You
-          </NavLink>
-          <NavLink
-            to="following"
-            className={({ isActive }) =>
-              isActive ? "text-blue-500 font-bold" : "text-white"
-            }
-          >
-            Following
-          </NavLink>
-        </div>
-        <div className="flex px-2 flex-row w-full items-tart">
+        {/* Create post section */}
+        <div className="flex px-2 flex-row w-full items-start">
           <div className="flex mt-6 justify-start space-x-4">
-            <div className="w-10 h-10 rounded-full bg-gray-300"></div>{" "}
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
           </div>
 
-          {/* Create post section */}
+          {/* Post Form */}
           <div className="p-4 w-full border-b flex flex-col gap-5 relative">
-            {/* Text Input Field */}
+            {/* Text Input */}
             <div className="flex flex-col w-full justify-between items-center mt-3 gap-3">
               <div className="w-full">
                 <input
@@ -147,10 +152,10 @@ export default function Middle() {
                 )}
               </div>
 
-              {/* Icons for adding images and emojis */}
+              {/* Image Input Button */}
               <div className="flex justify-start items-start w-full space-x-4 mt-2 sm:mt-0">
                 <button
-                  onClick={handleImageClick}
+                  onClick={() => document.getElementById("imageInput").click()}
                   className="hover:text-blue-500"
                   aria-label="Add Image"
                 >
@@ -158,19 +163,11 @@ export default function Middle() {
                   <input
                     type="file"
                     id="imageInput"
-                    onChange={(e) => handleImageUpload(e.target.files)}
+                    onChange={handleImageChange}
                     className="hidden"
                     accept="image/*"
                     multiple
                   />
-                </button>
-
-                <button
-                  onClick={handleEmojiClick}
-                  className="hover:text-blue-500"
-                  aria-label="Add Emoji"
-                >
-                  <FaRegSmile size={24} />
                 </button>
               </div>
             </div>
@@ -198,7 +195,7 @@ export default function Middle() {
 
         {/* All posts */}
         <div className="mt-12">
-          <Outlet />
+          <For_you />
         </div>
       </div>
     </section>

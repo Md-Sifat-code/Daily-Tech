@@ -34,17 +34,8 @@ const router = createBrowserRouter([
       {
         path: "/home", // Renders the "Create Post" section and the Outlet for the nested routes
         element: <Middle />,
-        children: [
-          {
-            path: "/home/for_you", // This renders For_you inside Outlet
-            element: <For_you />,
-          },
-          {
-            path: "/home/following", // This renders Following inside Outlet
-            element: <Following />,
-          },
-        ],
       },
+      {},
     ],
   },
 ]);

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useUser } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import ssmall from "/astronot.png";
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track if the modal is open
   const { updateUser } = useUser(); // Access the context to update user data
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +34,13 @@ export default function Login() {
           roles: data.roles,
         });
 
-        alert("Login successful!");
+        // Show the modal after successful login
+        setIsModalOpen(true);
+
+        // Redirect to "/home" after a brief delay
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000); // Wait 2 seconds before redirecting
       } else {
         alert("Login failed: " + (data.message || "Unknown error"));
       }
@@ -42,7 +52,7 @@ export default function Login() {
 
   return (
     <section className="min-h-screen rob flex items-center justify-center">
-      <div className=" p-8 rounded-lg shadow-lg w-96">
+      <div className="p-8 rounded-lg shadow-lg w-96">
         <img src={ssmall} alt="" />
         <h2 className="text-2xl font-semibold text-center text-white mb-6">
           Login
@@ -88,6 +98,26 @@ export default function Login() {
           </button>
         </form>
       </div>
+
+      {/* Modal for successful login */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-10">
+          <div className="w-96 p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold text-center text-green-500">
+              Login Successful!
+            </h3>
+            <p className="mt-4 text-center">Redirecting to your home page...</p>
+            <div className="flex justify-center mt-6">
+              <button
+                className="btn btn-primary"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 
-*{
+/* *{
   background-color: black;
-}
+} */
 
 .textcol{
   color: #6b21a8;

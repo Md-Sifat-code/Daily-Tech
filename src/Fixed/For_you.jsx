@@ -24,9 +24,6 @@ export default function For_you() {
 
   return (
     <div className="max-w-4xl mx-auto px-4">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mt-5 mb-8">
-        For You
-      </h2>
       {posts.length === 0 ? (
         <p className="text-center text-gray-500">No posts available</p>
       ) : (
@@ -34,7 +31,7 @@ export default function For_you() {
           {posts.map((post) => (
             <div
               key={post._id}
-              className="card bg-white shadow-lg rounded-lg mb-6 hover:scale-105 transform transition-all duration-300 ease-in-out border-b border-blue-400"
+              className="bg-[#210633] rounded-lg mb-6 hover:scale-105 transform transition-all duration-300 ease-in-out"
             >
               <div className="card-body">
                 <h3 className="text-xl text-white font-semibold ">
@@ -49,7 +46,7 @@ export default function For_you() {
                         key={index}
                         src={imageUrl}
                         alt={`post-image-${index}`}
-                        className="rounded-lg w-full h-[250px] object-cover"
+                        className="rounded-[22px] w-full h-[450px] object-cover"
                       />
                     ))}
                   </div>
