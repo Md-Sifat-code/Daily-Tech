@@ -17,8 +17,9 @@ import ProfileContext from "../Contexts/ProfileContext"; // Import ProfileContex
 
 export default function Left_side() {
   // Get username and email from sessionStorage
-  const username = sessionStorage.getItem("username") || "Md sifat Bin jibon"; // Default if not found
-  const email = sessionStorage.getItem("email") || "@code-siffat"; // Default if not found
+  const username = sessionStorage.getItem("username"); // Default if not found
+  const email = sessionStorage.getItem("email"); // Default if not found
+  console.log(username, email);
 
   const { fetchUserData } = useContext(ProfileContext); // Get fetchUserData from context
 

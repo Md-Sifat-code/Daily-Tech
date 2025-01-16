@@ -12,6 +12,8 @@ import Login from "./Authentication/Login";
 import { UserProvider } from "./Contexts/UserContext";
 import User_Profile from "./Profile/User_Profile";
 import { ProfileProvider } from "./Contexts/ProfileContext";
+import UserDetails from "./Profile/UserDetails";
+import { ViewProvider } from "./Contexts/View_context";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
         path: "/home/:username", // Renders the user profile based on the username
         element: <User_Profile />,
       },
+      {
+        path: "/home/view/:username", // Renders the user's posts based on the username
+        element: <UserDetails />,
+      },
     ],
   },
 ]);
@@ -48,9 +54,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
       <ProfileProvider>
-        <PostProvider>
-          <RouterProvider router={router} />
-        </PostProvider>
+        <ViewProvider>
+          <PostProvider>
+            <RouterProvider router={router} />
+          </PostProvider>
+        </ViewProvider>
       </ProfileProvider>
     </UserProvider>
   </React.StrictMode>

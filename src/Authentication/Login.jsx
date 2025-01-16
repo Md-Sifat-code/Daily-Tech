@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useUser } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import ssmall from "/astronot.png";
+import ProfileContext from "../Contexts/ProfileContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false); // Track if the modal is open
   const { updateUser } = useUser(); // Access the context to update user data
   const navigate = useNavigate(); // Initialize the navigate function
+  const { fetchUserData } = useContext(ProfileContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +50,7 @@ export default function Login() {
       console.error("Error:", error);
       alert("An error occurred. Please try again.");
     }
+    fetchUserData();
   };
 
   return (

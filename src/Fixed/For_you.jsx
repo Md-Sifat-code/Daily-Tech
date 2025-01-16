@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { usePosts } from "../Context_api/PostContext"; // Import the usePosts hook
 import { FaHeart, FaShareAlt, FaComment } from "react-icons/fa"; // Import React Icons
 import lol from "/astronot.png";
+import { IoCheckmarkDoneCircle } from "react-icons/io5";
+import { Link } from "react-router-dom";
+
+import ViewContext from "../Contexts/View_context";
+
 export default function For_you() {
   const { posts, loading, error } = usePosts(); // Access posts, loading, and error from the context
+  const { fetchUserDataByUsername } = useContext(ViewContext);
+
+  // Update handleProfileClick to accept the username
+  const handleProfileClick = (username) => {
+    if (username) {
+      fetchUserDataByUsername(username); // Trigger the API request with the username when the profile button is clicked
+    }
+  };
 
   if (loading) {
     return (
@@ -31,22 +44,32 @@ export default function For_you() {
           {posts.map((post) => (
             <div
               key={post._id}
-              className=" bg-[#08020e3a]  rounded-[22px] mb-14 hover:scale-105 transform transition-all duration-300 ease-in-out shadow-lg shadow-blue-950 border-gray-300 py-4"
+              className=" bg-[#08020e3a] rounded-[22px] mb-14 hover:scale-105 transform transition-all duration-300 ease-in-out shadow-lg shadow-blue-950 border-gray-300 py-4"
             >
               <div className="flex flex-row items-center">
                 <div>
                   <img className="w-[60px] h-[60px]" src={lol} alt="" />
                 </div>
-                <div>
-                  <h1>{post.user?.fullname || "Unknown User"}</h1>{" "}
+                <div className="flex items-center flex-row px-2 gap-3">
+                  <Link
+                    // Pass the username to handleProfileClick when the link is clicked
+                    onClick={() => handleProfileClick(post.user?.username)}
+                    to={`/home/view/${post.user?.username}`}
+                    className="text-white font-bold hover:underline"
+                  >
+                    {post.user?.fullname || "Unknown User"}
+                  </Link>{" "}
+                  <IoCheckmarkDoneCircle className="text-orange-300" />
                   {/* Check if user exists, else fallback to 'Unknown User' */}
-                  <h1>@{post.user?.username || "anonymous"}</h1>{" "}
+                  <h1 className="text-gray-500">
+                    @{post.user?.username || "anonymous"}
+                  </h1>{" "}
                   {/* Check if user exists, else fallback to 'anonymous' */}
                 </div>
               </div>
 
               <div className="px-6 md:px-14">
-                <h3 className="text-xl mt-6 text-white font-semibold ">
+                <h3 className="text-lg text-white font-semibold ">
                   {post.title}
                 </h3>
 
