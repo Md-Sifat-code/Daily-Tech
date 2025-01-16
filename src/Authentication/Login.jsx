@@ -70,7 +70,7 @@ export default function Login() {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-2 mt-2 text-white border border-gray-300 rounded-md"
+              className="w-full p-2 mt-2 text-black border border-gray-300 rounded-md"
               required
             />
           </div>

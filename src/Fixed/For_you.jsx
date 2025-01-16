@@ -1,7 +1,7 @@
 import React from "react";
 import { usePosts } from "../Context_api/PostContext"; // Import the usePosts hook
 import { FaHeart, FaShareAlt, FaComment } from "react-icons/fa"; // Import React Icons
-
+import lol from "/astronot.png";
 export default function For_you() {
   const { posts, loading, error } = usePosts(); // Access posts, loading, and error from the context
 
@@ -23,7 +23,7 @@ export default function For_you() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4">
+    <div className="max-w-4xl mx-auto md:px-4">
       {posts.length === 0 ? (
         <p className="text-center text-gray-500">No posts available</p>
       ) : (
@@ -33,7 +33,19 @@ export default function For_you() {
               key={post._id}
               className=" bg-[#08020e3a]  rounded-[22px] mb-14 hover:scale-105 transform transition-all duration-300 ease-in-out shadow-lg shadow-blue-950 border-gray-300 py-4"
             >
-              <div className="px-6">
+              <div className="flex flex-row items-center">
+                <div>
+                  <img className="w-[60px] h-[60px]" src={lol} alt="" />
+                </div>
+                <div>
+                  <h1>{post.user?.fullname || "Unknown User"}</h1>{" "}
+                  {/* Check if user exists, else fallback to 'Unknown User' */}
+                  <h1>@{post.user?.username || "anonymous"}</h1>{" "}
+                  {/* Check if user exists, else fallback to 'anonymous' */}
+                </div>
+              </div>
+
+              <div className="px-6 md:px-14">
                 <h3 className="text-xl mt-6 text-white font-semibold ">
                   {post.title}
                 </h3>

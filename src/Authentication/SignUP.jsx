@@ -109,7 +109,7 @@ export default function SignUP() {
                   type="text"
                   name="username"
                   placeholder="Username"
-                  className="w-full py-2 focus:outline-none focus:ring-2 text-white focus:ring-indigo-500"
+                  className="w-full py-2 focus:outline-none focus:ring-2 text-black focus:ring-indigo-500"
                   required
                 />
               </div>
@@ -120,7 +120,7 @@ export default function SignUP() {
                   type="email"
                   name="email"
                   placeholder="Email Address"
-                  className="w-full py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full py-2 text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
                 />
               </div>
@@ -131,7 +131,7 @@ export default function SignUP() {
                   type="text"
                   name="password"
                   placeholder="Password"
-                  className="w-full py-2 focus:outline-none focus:ring-2 text-white focus:ring-indigo-500"
+                  className="w-full py-2 focus:outline-none focus:ring-2 text-black focus:ring-indigo-500"
                   required
                 />
               </div>

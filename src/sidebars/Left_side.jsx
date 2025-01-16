@@ -44,47 +44,47 @@ export default function Left_side() {
             className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0"
           >
             <MdHomeFilled />
-            Home
+            <span className="hidden lg:block">Home</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoSearchSharp />
-            Explore
+            <span className="hidden lg:block">Explore</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <FaBell />
-            Notifications
+            <span className="hidden lg:block">Notifications</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoMailOutline />
-            Messages
+            <span className="hidden lg:block">Messages</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoBookmarkSharp />
-            Bookmarks
+            <span className="hidden lg:block">Bookmarks</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <PiHandbagSimpleBold />
-            Jobs
+            <span className="hidden lg:block">Jobs</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <BsPeopleFill />
-            Communities
+            <span className="hidden lg:block">Communities</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <RiVipCrown2Fill />
-            Premium
+            <span className="hidden lg:block">Premium</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <IoCheckmarkDoneCircleSharp />
-            Get verified
+            <span className="hidden lg:block">Get verified</span>
           </Link>
 
           {/* Profile Button */}
@@ -94,12 +94,12 @@ export default function Left_side() {
             className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0"
           >
             <LuUserRound />
-            Profile
+            <span className="hidden lg:block">Profile</span>
           </Link>
 
           <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
             <CgMoreO />
-            More
+            <span className="hidden lg:block">More</span>
           </Link>
 
           {/* Post Button */}
@@ -109,11 +109,11 @@ export default function Left_side() {
         </div>
 
         {/* User Info */}
-        <div className="flex items-center justify-start gap-4 robo">
+        <div className="flex flex-col lg:flex-row items-center justify-start gap-4 robo">
           <p className="text-white rounded-full bg-purple-800 text-2xl p-2">
             <FaUser className="rounded-full bg-purple-800" />
           </p>
-          <div className="flex flex-col text-white mt-2">
+          <div className="flex flex-col justify-center items-center lg:justify-start lg:items-start text-white mt-2">
             <p>{username}</p>
             <p>{email}</p>
           </div>

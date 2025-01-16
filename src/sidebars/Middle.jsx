@@ -109,15 +109,15 @@ export default function Middle() {
 
   return (
     <section>
-      <div className="flex justify-center items-center flex-col w-full">
+      <div className="flex justify-center px-4 lg:px-0 items-center flex-col w-full">
         {/* Create post section */}
-        <div className="flex px-2 rounded-[22px]  mt-2 flex-row w-[870px] bg-[#0f1321] shadow-lg shadow-blue-950 justify-center items-start ">
-          <div className="flex px-4 mt-6 justify-start items-start  space-x-4">
+        <div className="flex px-2 rounded-[22px] mt-2 flex-col sm:flex-row w-full lg:w-[870px] bg-[#0f1321] shadow-lg shadow-blue-950 justify-center items-start">
+          <div className="flex px-4 mt-6 justify-start items-start space-x-4">
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
           </div>
 
           {/* Post Form */}
-          <div className="p-4 w-full  border-gray-400 flex flex-col gap-5 relative">
+          <div className="p-4 w-full border-gray-400 flex flex-col gap-5 relative">
             {/* Text Input */}
             <div className="flex flex-col w-full justify-between items-center mt-3 gap-3">
               <div className="w-full">
@@ -175,8 +175,7 @@ export default function Middle() {
                 </div>
                 <button
                   onClick={handleSubmit}
-                  className=" bg-blue-500 btn px-8
-                   text-white border-none font-bold rounded-[42px]"
+                  className="bg-blue-500 btn px-8 text-white border-none font-bold rounded-[42px]"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Post"}
@@ -193,13 +192,11 @@ export default function Middle() {
                 <EmojiPicker onEmojiClick={handleEmojiSelect} />
               </div>
             )}
-
-            {/* Submit Button */}
           </div>
         </div>
 
         {/* All posts */}
-        <div className="mt-12">
+        <div className="mt-12 w-full">
           <For_you />
         </div>
       </div>

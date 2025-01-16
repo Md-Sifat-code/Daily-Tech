@@ -4,8 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Main_Layout from "./Layout/Main_Layout";
 import Middle from "./sidebars/Middle";
-import For_you from "./Fixed/For_you";
-import Following from "./Fixed/Following";
+
 import { PostProvider } from "./Context_api/PostContext";
 import Auth_Layout from "./Layout/Auth_Layout";
 import SignUP from "./Authentication/SignUP";
