@@ -28,7 +28,7 @@ function UserDetails() {
   if (!userData) return <div>No user data found.</div>;
 
   // Fallback values in case name or posts are null
-  const userName = userData.name || "User Name";
+  const userName = userData.fullname || "User Name";
   const userPosts = userData.Posts || 0;
   const username = userData.username || "@unknown";
   const joined = userData.joined || "Unknown";

@@ -1,5 +1,4 @@
-// ProfileContext.jsx
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const ProfileContext = createContext();
 
@@ -24,6 +23,11 @@ export function ProfileProvider({ children }) {
         });
     }
   };
+
+  // Call fetchUserData whenever the component mounts (or on reload)
+  useEffect(() => {
+    fetchUserData();
+  }, []); // Empty dependency array ensures this runs once when the component is mounted
 
   return (
     <ProfileContext.Provider

@@ -57,7 +57,7 @@ export default function Login() {
     <section className="min-h-screen rob flex items-center justify-center">
       <div className="p-8 rounded-lg shadow-lg w-96">
         <img src={ssmall} alt="" />
-        <h2 className="text-2xl font-semibold text-center text-white mb-6">
+        <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
           Login
         </h2>
         <form onSubmit={handleSubmit}>

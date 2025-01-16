@@ -1,5 +1,4 @@
-// ViewContext.jsx
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState, useCallback, useEffect } from "react";
 
 const ViewContext = createContext();
 
@@ -23,6 +22,14 @@ export function ViewProvider({ children }) {
         });
     }
   }, []);
+
+  // Fetch user data by username on component mount or reload
+  useEffect(() => {
+    const username = sessionStorage.getItem("username");
+    if (username) {
+      fetchUserDataByUsername(username);
+    }
+  }, [fetchUserDataByUsername]); // This will run once when the component mounts
 
   return (
     <ViewContext.Provider
