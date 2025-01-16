@@ -95,10 +95,10 @@ export default function SignUP() {
             onSubmit={handleSubmit}
             className="max-w-md w-full space-y-6 shadow-lg p-8 rounded-lg"
           >
-            <h2 className="text-6xl font-bold text-center rob text-white">
+            <h2 className="text-6xl font-bold text-center rob text-black">
               Daily<span className="text-blue-600">Tech</span>
             </h2>
-            <h2 className="text-xl font-bold text-center text-white">
+            <h2 className="text-xl font-bold text-center text-black">
               Fill up your info!{" "}
               <span className="text-blue-600">And Let's start</span>
             </h2>

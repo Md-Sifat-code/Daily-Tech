@@ -11,6 +11,8 @@ import Auth_Layout from "./Layout/Auth_Layout";
 import SignUP from "./Authentication/SignUP";
 import Login from "./Authentication/Login";
 import { UserProvider } from "./Contexts/UserContext";
+import User_Profile from "./Profile/User_Profile";
+import { ProfileProvider } from "./Contexts/ProfileContext";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +37,10 @@ const router = createBrowserRouter([
         path: "/home", // Renders the "Create Post" section and the Outlet for the nested routes
         element: <Middle />,
       },
-      {},
+      {
+        path: "/home/:username", // Renders the user profile based on the username
+        element: <User_Profile />,
+      },
     ],
   },
 ]);
@@ -43,9 +48,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
-      <PostProvider>
-        <RouterProvider router={router} />
-      </PostProvider>
+      <ProfileProvider>
+        <PostProvider>
+          <RouterProvider router={router} />
+        </PostProvider>
+      </ProfileProvider>
     </UserProvider>
   </React.StrictMode>
 );

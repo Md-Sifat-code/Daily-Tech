@@ -111,7 +111,7 @@ export default function Middle() {
     <section>
       <div className="flex justify-center items-center flex-col w-full">
         {/* Create post section */}
-        <div className="flex px-2  mt-2 flex-row w-[870px] bg-[#0f1321] rounded-lg justify-center items-start ">
+        <div className="flex px-2 rounded-[22px]  mt-2 flex-row w-[870px] bg-[#0f1321] shadow-lg shadow-blue-950 justify-center items-start ">
           <div className="flex px-4 mt-6 justify-start items-start  space-x-4">
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
           </div>
