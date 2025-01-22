@@ -61,7 +61,10 @@ export default function Left_side() {
             <span className="hidden lg:block">Notifications</span>
           </Link>
 
-          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
+          <Link
+            to={`/home/${username}/chats`} // Dynamic URL with username
+            className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0"
+          >
             <IoMailOutline />
             <span className="hidden lg:block">Messages</span>
           </Link>
