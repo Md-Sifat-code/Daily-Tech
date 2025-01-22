@@ -15,6 +15,7 @@ import { ProfileProvider } from "./Contexts/ProfileContext";
 import UserDetails from "./Profile/UserDetails";
 import { ViewProvider } from "./Contexts/View_context";
 import Searching from "./Pages/Searching";
+import Messege from "./Pages/Messege";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/home/searching",
         element: <Searching />,
+      },
+      {
+        path: "/home/:username/chats",
+        element: <Messege />,
       },
     ],
   },

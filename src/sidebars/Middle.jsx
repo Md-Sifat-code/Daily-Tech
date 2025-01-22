@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { FaImage, FaRegSmile, FaTrash } from "react-icons/fa"; // Added Trash Icon for deletion
 import EmojiPicker from "emoji-picker-react"; // Using emoji-picker-react
 import For_you from "../Fixed/For_you";
+import ProfileContext from "../Contexts/ProfileContext";
 
 export default function Middle() {
   const [postText, setPostText] = useState(""); // Post text
   const [images, setImages] = useState([]); // Uploaded images
   const [showEmojiPicker, setShowEmojiPicker] = useState(false); // To show/hide emoji picker
+  const [profilpic, setProfilpic] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
-
+  const { userData } = useContext(ProfileContext);
   const emojiPickerRef = useRef(null); // Ref for emoji picker
-
+  console.log(userData);
   // Close emoji picker when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -113,7 +115,15 @@ export default function Middle() {
         {/* Create post section */}
         <div className="flex px-2 rounded-[22px] mt-2 flex-col sm:flex-row w-full lg:w-[870px] bg-[#0f1321] shadow-lg shadow-blue-950 justify-center items-start">
           <div className="flex px-4 mt-6 justify-start items-start space-x-4">
-            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <img
+              className="h-[50px] w-[50px] rounded-full border border-blue-400"
+              src={
+                profilpic
+                  ? URL.createObjectURL(profilpic)
+                  : userData[0]?.profilpic || ok
+              }
+              alt="Profile"
+            />
           </div>
 
           {/* Post Form */}
