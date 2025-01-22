@@ -48,7 +48,10 @@ export default function Left_side() {
             <span className="hidden lg:block">Home</span>
           </Link>
 
-          <Link className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0">
+          <Link
+            to={"/home/searching"}
+            className="flex btn bg-transparent text-white hover:bg-transparent hover:border-2 hover:border-white px-6 flex-row justify-start items-center gap-6 text-2xl font-bold border-0"
+          >
             <IoSearchSharp />
             <span className="hidden lg:block">Explore</span>
           </Link>

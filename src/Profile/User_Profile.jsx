@@ -23,7 +23,6 @@ function User_Profile() {
 
   useEffect(() => {
     if (userData && userData.length > 0) {
-      // Initialize the form fields with userData values
       const user = userData[0];
       setFullname(user.fullname || "");
       setBio(user.bio || "");
@@ -75,10 +74,10 @@ function User_Profile() {
     formData.append("address", address || "");
 
     if (coverPic) {
-      formData.append("coverPic", coverPic); // Assuming coverPic is a File object
+      formData.append("coverPic", coverPic);
     }
     if (profilpic) {
-      formData.append("profilpic", profilpic); // Assuming profilpic is a File object
+      formData.append("profilpic", profilpic);
     }
 
     try {
@@ -90,34 +89,12 @@ function User_Profile() {
         }
       );
 
-      const contentType = response.headers.get("Content-Type");
-
       if (response.ok) {
-        if (contentType && contentType.includes("application/json")) {
-          const result = await response.json();
-          console.log("Profile updated successfully:", result);
-          closeModal();
-        } else {
-          const resultText = await response.text();
-          console.log(
-            "Profile updated successfully (text response):",
-            resultText
-          );
-          closeModal();
-        }
+        closeModal();
       } else {
-        if (contentType && contentType.includes("application/json")) {
-          const errorData = await response.json();
-          console.error("Failed to update profile:", errorData);
-          alert("Error: " + errorData.message);
-        } else {
-          const errorText = await response.text();
-          console.error(
-            "Failed to update profile (non-JSON response):",
-            errorText
-          );
-          alert("Error: " + errorText);
-        }
+        const errorData = await response.json();
+        console.error("Failed to update profile:", errorData);
+        alert("Error: " + errorData.message);
       }
     } catch (error) {
       console.error("Network Error:", error);
@@ -148,7 +125,7 @@ function User_Profile() {
   const followers = userData[0]?.followers || 0;
 
   return (
-    <section className="rob border h-full">
+    <section className="rob overflow-y-hidden  h-full">
       <div>
         {/* title part */}
         <div className="flex px-4 mt-2 items-center gap-12">
@@ -233,8 +210,8 @@ function User_Profile() {
 
       {/* Modal for editing profile */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-96">
+        <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-full w-96 sm:w-80 md:w-96 lg:w-[500px]">
             <h2 className="text-2xl font-bold mb-4">Edit Profile</h2>
 
             {/* Banner photo */}
@@ -250,7 +227,7 @@ function User_Profile() {
                       : userData[0]?.coverPicture || "default-banner.png"
                   }
                   alt="Banner"
-                  className="w-full h-40 object-cover mt-2"
+                  className="w-full h-40 object-cover mt-2 rounded-md"
                 />
                 <label className="absolute top-2 right-2">
                   <BsFillCameraFill className="text-blue-600 cursor-pointer text-2xl" />

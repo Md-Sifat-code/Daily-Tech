@@ -1,9 +1,6 @@
-// UserDetails.jsx
 import React, { useContext } from "react";
-
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import ok from "/astronot.png";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { AiOutlineLoading3Quarters } from "react-icons/ai"; // New loading icon
@@ -11,7 +8,9 @@ import ViewContext from "../Contexts/View_context";
 
 function UserDetails() {
   const { userData, loading, error } = useContext(ViewContext);
+  console.log("UserData from context:", userData); // Check if context data is correct
 
+  // Loading state
   if (loading) {
     return (
       <div className="flex justify-center items-center h-full">
@@ -23,17 +22,33 @@ function UserDetails() {
     );
   }
 
+  // Error state
   if (error) return <div>Error: {error.message}</div>;
 
-  if (!userData) return <div>No user data found.</div>;
+  // If no user data is available
+  if (!userData || userData.length === 0) return <div>No user data found.</div>;
+
+  // Access the first user object in the array
+  const user = userData[0];
 
   // Fallback values in case name or posts are null
-  const userName = userData.fullname || "User Name";
-  const userPosts = userData.Posts || 0;
-  const username = userData.username || "@unknown";
-  const joined = userData.joined || "Unknown";
-  const following = userData.following || 0;
-  const followers = userData.followers || 0;
+  const Name = user.fullname || "User Name";
+  const userPosts = user.Posts || 0;
+  const username = user.username || "unknown";
+  const joined = user.joined || "Unknown";
+  const following = user.following || 0;
+  const followers = user.followers || 0;
+  const coverPicture = user.coverPicture || ""; // Check if this is correct
+  const profilePic = user.profilpic || ""; // Check if this is correct
+
+  // Log the final user data being used for rendering
+  console.log("Rendering with user data:", {
+    Name,
+    username,
+    userPosts,
+    coverPicture,
+    profilePic,
+  });
 
   return (
     <section className="rob border h-full">
@@ -44,20 +59,25 @@ function UserDetails() {
             <IoArrowBackCircleSharp className="text-2xl text-white" />
           </Link>
           <div>
-            <h1 className="text-2xl text-white">{userName}</h1>
+            <h1 className="text-2xl text-white">{username}</h1>
             <p className="text-gray-400">{userPosts} Posts</p>
           </div>
         </div>
         {/* picture part */}
         <div>
-          <div className="h-[300px] w-full bg-gray-300 mt-4">
-            <img src="" alt="" />
-          </div>
+          <div
+            className="h-[300px] w-full bg-gray-300 mt-4"
+            style={{
+              backgroundImage: `url(${coverPicture})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></div>
           <div className="flex mt-[-50px] flex-row items-center justify-between px-4">
             <img
               className="h-[80px] w-[80px] rounded-full border border-blue-400"
-              src={ok}
-              alt=""
+              src={profilePic}
+              alt="Profile"
             />
           </div>
         </div>
@@ -65,7 +85,7 @@ function UserDetails() {
         <div>
           <div className="flex flex-row justify-start items-center gap-4 mt-4 px-4">
             {/* name part */}
-            <h1 className="text-2xl text-white">{userName}</h1>
+            <h1 className="text-2xl text-white">{Name}</h1>
             <Link className="btn btn-sm bg-transparent text-white px-2 flex-row justify-start items-center gap-2 text-2xl font-bold border-1 hover:bg-blue-600">
               <IoCheckmarkDoneCircle />
               Get verified

@@ -14,6 +14,7 @@ import User_Profile from "./Profile/User_Profile";
 import { ProfileProvider } from "./Contexts/ProfileContext";
 import UserDetails from "./Profile/UserDetails";
 import { ViewProvider } from "./Contexts/View_context";
+import Searching from "./Pages/Searching";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/home/view/:username", // Renders the user's posts based on the username
         element: <UserDetails />,
+      },
+      {
+        path: "/home/searching",
+        element: <Searching />,
       },
     ],
   },
