@@ -16,6 +16,7 @@ import UserDetails from "./Profile/UserDetails";
 import { ViewProvider } from "./Contexts/View_context";
 import Searching from "./Pages/Searching";
 import Messege from "./Pages/Messege";
+import { WebSocketProvider } from "./Contexts/WebSocketContext";
 
 const router = createBrowserRouter([
   {
@@ -65,9 +66,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <UserProvider>
       <ProfileProvider>
         <ViewProvider>
-          <PostProvider>
-            <RouterProvider router={router} />
-          </PostProvider>
+          <WebSocketProvider>
+            <PostProvider>
+              <RouterProvider router={router} />
+            </PostProvider>
+          </WebSocketProvider>
         </ViewProvider>
       </ProfileProvider>
     </UserProvider>

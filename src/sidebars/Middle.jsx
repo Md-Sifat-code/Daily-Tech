@@ -3,7 +3,7 @@ import { FaImage, FaRegSmile, FaTrash } from "react-icons/fa"; // Added Trash Ic
 import EmojiPicker from "emoji-picker-react"; // Using emoji-picker-react
 import For_you from "../Fixed/For_you";
 import ProfileContext from "../Contexts/ProfileContext";
-
+import { FaUserCircle } from "react-icons/fa";
 export default function Middle() {
   const [postText, setPostText] = useState(""); // Post text
   const [images, setImages] = useState([]); // Uploaded images
@@ -120,10 +120,15 @@ export default function Middle() {
               src={
                 profilpic
                   ? URL.createObjectURL(profilpic)
-                  : userData[0]?.profilpic || ok
+                  : userData && userData[0]?.profilpic
+                  ? userData[0].profilpic
+                  : null
               }
               alt="Profile"
             />
+            {!(profilpic || (userData && userData[0]?.profilpic)) && (
+              <FaUserCircle className="h-[50px] w-[50px] text-gray-500" />
+            )}
           </div>
 
           {/* Post Form */}
